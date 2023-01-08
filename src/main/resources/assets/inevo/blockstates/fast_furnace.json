@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube",
+    "textures": {
+      "particle": "inevo:blocks/fast_furnace",
+      "north": "inevo:blocks/fast_furnace",
+      "south": "inevo:blocks/side",
+      "west": "inevo:blocks/side",
+      "east": "inevo:blocks/side",
+      "up": "inevo:blocks/top",
+      "down": "inevo:blocks/bottom"
+    }
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90},
+      "up": {"x": -90},
+      "down": {"x": 90}
+    },
+    "state": {
+      "off": {},
+      "working": { "textures": { "north": "inevo:blocks/fast_furnace_working" } },
+      "nopower": {"textures": { "north": "inevo:blocks/fast_furnace_nopower" } }
+    }
+  }
+}

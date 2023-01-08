@@ -1,0 +1,34 @@
+#tabs
+itemGroup.inEvoMiscTab=Industrial Evolved
+
+#Items
+item.dirt_ball.name=Dirt Ball
+item.ingot_copper.name=Copper Ingot
+item.phase_sword.name=Phase Sword
+item.phase_device.name=Phase Device
+item.adaptable_armor_feet.name=AdaptArmor Feet
+item.adaptable_armor_legs.name=AdaptArmor Legs
+item.adaptable_armor_chest.name=AdaptArmor Chest
+item.adaptable_armor_head.name=AdaptArmor Head
+item.hyper_engine.name=Hyper Engine
+#Tiles
+tile.compressed_dirt.name=Compressed Dirt
+
+
+#Effect
+effect.inevo.phaseSpace=Phase
+effect.inevo.adapt_potion=Adapt
+effect.inevo.overload_protect=OverloadProtect
+effect.inevo.geneLocked=GeneLocked
+
+#ToolTips
+tooltip.storedEnergy=Energy
+tooltip.summoned=Summoned
+
+#Key
+key.categories.inevo=Industrial Evolved
+key.phase_sword_mode=PhaseSword Mode
+
+#Entity
+entity.inevo_alice.name=Alice
+entity.inevo_float.name=Floating Cannon

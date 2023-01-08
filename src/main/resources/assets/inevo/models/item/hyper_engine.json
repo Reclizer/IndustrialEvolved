@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "inevo:items/bauble/hyper_engine"
+  }
+}
