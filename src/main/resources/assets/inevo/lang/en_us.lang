@@ -23,7 +23,7 @@ effect.inevo.geneLocked=GeneLocked
 
 #ToolTips
 tooltip.storedEnergy=Energy
-tooltip.summoned=Summoned
+tooltip.space_energy=HyperEnergy
 
 #Key
 key.categories.inevo=Industrial Evolved

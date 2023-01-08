@@ -2,6 +2,8 @@ package com.reclizer.inevo.entity.construct;
 
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.entity.ai.EntityAIMasterHurtByTarget;
+import com.reclizer.inevo.player.PlayerEnergy;
+import com.reclizer.inevo.player.PlayerProperties;
 import com.reclizer.inevo.util.AllyDesignationSystem;
 import com.reclizer.inevo.util.EntityUtils;
 import io.netty.buffer.ByteBuf;
@@ -61,6 +63,8 @@ public abstract class EntityEnergyConstruct extends EntityCreature implements IE
         // Permanent constructs can now be dispelled by sneak-right-clicking
         //&& player.getHeldItem(hand).getItem() instanceof ISpellCastingItem  &&lifetime == -1
         if(getMaster() == player && player.isSneaking() ){
+            PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(player);
+            playerEnergy.setSpaceEnergy(playerEnergy.getSpaceEnergy()+5);
             this.despawn();
             return EnumActionResult.SUCCESS;
         }

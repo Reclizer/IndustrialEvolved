@@ -9,27 +9,27 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
-public class WorldSummoned extends WorldSavedData {
+public class WorldEnergy extends WorldSavedData {
 
-    private static final String NAME = "InevoSummonedData";
+    private static final String NAME = "InevoSpaceEnergyData";
 
     private int ticker = 10;
-    private int tickTime=600;
+    private int tickTime=50;
 
-    public WorldSummoned() {
+    public WorldEnergy() {
         super(NAME);
     }
 
-    public WorldSummoned(String name) {
+    public WorldEnergy(String name) {
         super(name);
     }
 
-    public static WorldSummoned get(World world) {
+    public static WorldEnergy get(World world) {
         MapStorage storage = world.getPerWorldStorage();
-        WorldSummoned instance = (WorldSummoned) storage.getOrLoadData(WorldSummoned.class, NAME);
+        WorldEnergy instance = (WorldEnergy) storage.getOrLoadData(WorldEnergy.class, NAME);
 
         if (instance == null) {
-            instance = new WorldSummoned();
+            instance = new WorldEnergy();
             storage.setData(NAME, instance);
         }
         return instance;
@@ -40,29 +40,29 @@ public class WorldSummoned extends WorldSavedData {
         ticker--;
         tickTime--;
         if(tickTime<0){
-            reduceSummoned(world);
-            tickTime=600;
+            growSpaceEnergy(world);
+            tickTime=50;
         }
         if (ticker > 0) {
             return;
         }
         ticker = 10;
         //growMana(world);
-        sendSummoned(world);
+        sendSpaceEnergy(world);
     }
 
-    private void sendSummoned(World world) {
+    private void sendSpaceEnergy(World world) {
         for (EntityPlayer player : world.playerEntities) {
 
-            PlayerSummoned playerSummoned = PlayerProperties.getPlayerSummoned(player);
-            Messages.INSTANCE.sendTo(new PacketSendSummoned(playerSummoned.getSummoned()), (EntityPlayerMP) player);
+            PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(player);
+            Messages.INSTANCE.sendTo(new PacketSendSummoned(playerEnergy.getSpaceEnergy()), (EntityPlayerMP) player);
         }
     }
 
-    private void reduceSummoned(World world) {
+    private void growSpaceEnergy(World world) {
         for (EntityPlayer player : world.playerEntities) {
-            PlayerSummoned playerSummoned = PlayerProperties.getPlayerSummoned(player);
-            playerSummoned.setSummoned(playerSummoned.getSummoned()>0 ? playerSummoned.getSummoned()-1:playerSummoned.getSummoned());
+            PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(player);
+            playerEnergy.setSpaceEnergy(playerEnergy.getSpaceEnergy()<playerEnergy.getMaxSpaceEnergy() ? playerEnergy.getSpaceEnergy()+1: playerEnergy.getSpaceEnergy());
         }
     }
 

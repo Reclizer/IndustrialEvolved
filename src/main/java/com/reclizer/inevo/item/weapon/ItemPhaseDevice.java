@@ -4,7 +4,7 @@ import com.reclizer.inevo.entity.construct.EntityFloatingCannon;
 import com.reclizer.inevo.item.ItemEnergyBase;
 
 import com.reclizer.inevo.player.PlayerProperties;
-import com.reclizer.inevo.player.PlayerSummoned;
+import com.reclizer.inevo.player.PlayerEnergy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -28,10 +28,10 @@ public class ItemPhaseDevice extends ItemEnergyBase {
 
 
         if(!world.isRemote){
-            PlayerSummoned playerSummoned = PlayerProperties.getPlayerSummoned(player);
+            PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(player);
 
-            if(playerSummoned.getSummoned()<playerSummoned.getMaxSummoned()){
-                playerSummoned.setSummoned(playerSummoned.getSummoned()+1);
+            if(playerEnergy.getSpaceEnergy()>= 10){
+                playerEnergy.setSpaceEnergy(playerEnergy.getSpaceEnergy()-10);
                 EntityFloatingCannon floatingCannon = new EntityFloatingCannon(world);
                 floatingCannon.setPosition(player.posX, player.posY+3, player.posZ);
                 floatingCannon.setMaster(player);

@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import com.reclizer.inevo.client.particle.ParticleInevo;
 import com.reclizer.inevo.entity.ModEntities;
 import com.reclizer.inevo.player.PlayerPropertyEvents;
-import com.reclizer.inevo.player.PlayerSummoned;
-import com.reclizer.inevo.player.SummonedTickHandler;
+import com.reclizer.inevo.player.PlayerEnergy;
+import com.reclizer.inevo.player.EnergyTickHandler;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -35,17 +35,17 @@ public class CommonProxy {
 public void preInit(FMLPreInitializationEvent e){
     Messages.registerMessages("inevo");
     ModEntities.init();
-    MinecraftForge.EVENT_BUS.register(SummonedTickHandler.instance);
+    MinecraftForge.EVENT_BUS.register(EnergyTickHandler.instance);
     MinecraftForge.EVENT_BUS.register(PlayerPropertyEvents.instance);
-    CapabilityManager.INSTANCE.register(PlayerSummoned.class, new Capability.IStorage<PlayerSummoned>() {
+    CapabilityManager.INSTANCE.register(PlayerEnergy.class, new Capability.IStorage<PlayerEnergy>() {
         @Nullable
         @Override
-        public NBTBase writeNBT(Capability<PlayerSummoned> capability, PlayerSummoned instance, EnumFacing side) {
+        public NBTBase writeNBT(Capability<PlayerEnergy> capability, PlayerEnergy instance, EnumFacing side) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public void readNBT(Capability<PlayerSummoned> capability, PlayerSummoned instance, EnumFacing side, NBTBase nbt) {
+        public void readNBT(Capability<PlayerEnergy> capability, PlayerEnergy instance, EnumFacing side, NBTBase nbt) {
             throw new UnsupportedOperationException();
         }
     }, () -> null);

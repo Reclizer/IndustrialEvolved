@@ -14,12 +14,12 @@ public class OverlayRenderer {
 
     //private int summoned = 0;
     //private int summonedInfluence = 0;
-    private int playerSummoned = 0;
+    private int playerEnergy = 0;
 
-    public void setSummoned(int playerSummoned) {
+    public void setSpaceEnergy(int playerSummoned) {
         //this.summoned = summoned;
 //        this.summonedInfluence = manaInfluence;
-        this.playerSummoned = playerSummoned;
+        this.playerEnergy = playerSummoned;
     }
 
 
@@ -39,8 +39,8 @@ public class OverlayRenderer {
 
         int x = 220;
         int y = 10;
-        x = fontRenderer.drawString(LangUtils.localize("tooltip.summoned"), x, y, 0xffffffff);
-        x = fontRenderer.drawString("" + (playerSummoned), x, y, 0xffff0000);
+        x = fontRenderer.drawString(LangUtils.localize("tooltip.space_energy"), x, y, 0xffffffff);
+        x = fontRenderer.drawString("" + (playerEnergy), x, y, 0xffff0000);
 //        x = fontRenderer.drawString("Summoned ", x, y, 0xffffffff);
 //        x = fontRenderer.drawString("" + summoned, x, y, 0xffff0000);
 //        x = fontRenderer.drawString("  Influence ", x, y, 0xffffffff);

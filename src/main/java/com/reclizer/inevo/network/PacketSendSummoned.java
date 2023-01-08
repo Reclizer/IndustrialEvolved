@@ -44,7 +44,7 @@ public class PacketSendSummoned implements IMessage {
         }
 
         private void handle(PacketSendSummoned message, MessageContext ctx) {
-            OverlayRenderer.instance.setSummoned(message.playerSummoned);
+            OverlayRenderer.instance.setSpaceEnergy(message.playerSummoned);
         }
     }
 }

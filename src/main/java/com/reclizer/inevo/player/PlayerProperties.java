@@ -5,10 +5,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
 public class PlayerProperties {
-    @CapabilityInject(PlayerSummoned.class)
-    public static Capability<PlayerSummoned> PLAYER_SUMMONED;
+    @CapabilityInject(PlayerEnergy.class)
+    public static Capability<PlayerEnergy> PLAYER_SPACEENERGY;
 
-    public static PlayerSummoned getPlayerSummoned(EntityPlayer player) {
-        return player.getCapability(PLAYER_SUMMONED, null);
+    public static PlayerEnergy getPlayerSummoned(EntityPlayer player) {
+        return player.getCapability(PLAYER_SPACEENERGY, null);
     }
 }

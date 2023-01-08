@@ -14,7 +14,7 @@ public class PlayerPropertyEvents {
     @SubscribeEvent
     public void onEntityConstructing(AttachCapabilitiesEvent<Entity> event){
         if (event.getObject() instanceof EntityPlayer) {
-            if (!event.getObject().hasCapability(PlayerProperties.PLAYER_SUMMONED, null)) {
+            if (!event.getObject().hasCapability(PlayerProperties.PLAYER_SPACEENERGY, null)) {
                 event.addCapability(new ResourceLocation(IndustrialEvolved.MODID, "Summoned"), new PropertiesDispatcher());
             }
         }
@@ -24,9 +24,9 @@ public class PlayerPropertyEvents {
     public void onPlayerCloned(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
             // We need to copyFrom the capabilities
-            if (event.getOriginal().hasCapability(PlayerProperties.PLAYER_SUMMONED, null)) {
-                PlayerSummoned oldStore = event.getOriginal().getCapability(PlayerProperties.PLAYER_SUMMONED, null);
-                PlayerSummoned newStore = PlayerProperties.getPlayerSummoned(event.getEntityPlayer());
+            if (event.getOriginal().hasCapability(PlayerProperties.PLAYER_SPACEENERGY, null)) {
+                PlayerEnergy oldStore = event.getOriginal().getCapability(PlayerProperties.PLAYER_SPACEENERGY, null);
+                PlayerEnergy newStore = PlayerProperties.getPlayerSummoned(event.getEntityPlayer());
                 newStore.copyFrom(oldStore);
             }
         }

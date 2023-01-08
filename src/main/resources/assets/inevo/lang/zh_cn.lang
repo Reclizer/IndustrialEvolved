@@ -23,7 +23,7 @@ effect.inevo.geneLocked=基因锁
 
 #ToolTips
 tooltip.storedEnergy=电量
-tooltip.summoned=机械仆从
+tooltip.space_energy=超空间粒子
 #Entity
 entity.inevo_alice.name=爱丽丝
 entity.inevo_float.name=浮游炮

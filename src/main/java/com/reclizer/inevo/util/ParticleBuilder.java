@@ -100,8 +100,6 @@ public final class ParticleBuilder {
     public static class Type {
         /** 3D-rendered light-beam particle.<p></p><b>Defaults:</b><br>Lifetime: 1 tick<br> Colour: white */
         public static final ResourceLocation BEAM = new ResourceLocation(IndustrialEvolved.MODID,"beam");
-        /** Square block face highlight particle.<p></p><b>Defaults:</b><br>Lifetime: 160 ticks<br>Colour: white */
-        public static final ResourceLocation BLOCK_HIGHLIGHT = new ResourceLocation(IndustrialEvolved.MODID,"block_highlight");
         /** Helical animated 'buffing' particle.<p></p><b>Defaults:</b><br>Lifetime: 15 ticks
          * <br>Velocity: (0, 0.27, 0)<br>Colour: white */
         public static final ResourceLocation BUFF = new ResourceLocation(IndustrialEvolved.MODID,"buff");

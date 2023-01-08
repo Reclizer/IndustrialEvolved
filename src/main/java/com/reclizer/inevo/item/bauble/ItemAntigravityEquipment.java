@@ -1,16 +1,11 @@
 package com.reclizer.inevo.item.bauble;
 
 import baubles.api.BaubleType;
-import com.reclizer.inevo.entity.construct.EntityFloatingCannon;
 import com.reclizer.inevo.player.PlayerProperties;
-import com.reclizer.inevo.player.PlayerSummoned;
+import com.reclizer.inevo.player.PlayerEnergy;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ItemAntigravityEquipment extends EnergyBaubleTemplate{
@@ -92,8 +87,8 @@ public class ItemAntigravityEquipment extends EnergyBaubleTemplate{
             //p.capabilities.allowFlying = true;
             World world =p.world;
             if(!world.isRemote){
-                PlayerSummoned playerSummoned = PlayerProperties.getPlayerSummoned(p);
-                playerSummoned.setMaxSummoned(playerSummoned.getMaxSummoned()+4);
+                PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(p);
+                playerEnergy.setMaxSpaceEnergy(playerEnergy.getMaxSpaceEnergy()+4);
 
             }
         }
@@ -106,8 +101,8 @@ public class ItemAntigravityEquipment extends EnergyBaubleTemplate{
             //p.capabilities.allowFlying = true;
             World world =p.world;
             if(!world.isRemote){
-                PlayerSummoned playerSummoned = PlayerProperties.getPlayerSummoned(p);
-                playerSummoned.setMaxSummoned(playerSummoned.getMaxSummoned()-4);
+                PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(p);
+                playerEnergy.setMaxSpaceEnergy(playerEnergy.getMaxSpaceEnergy()-4);
 
             }
         }

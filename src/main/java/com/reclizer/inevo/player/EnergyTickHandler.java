@@ -4,8 +4,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-public class SummonedTickHandler {
-    public static SummonedTickHandler instance = new SummonedTickHandler();
+public class EnergyTickHandler {
+    public static EnergyTickHandler instance = new EnergyTickHandler();
 
     @SubscribeEvent
     public void onWorldTick(TickEvent.WorldTickEvent evt) {
@@ -13,6 +13,6 @@ public class SummonedTickHandler {
             return;
         }
         World world = evt.world;
-        WorldSummoned.get(world).tick(world);
+        WorldEnergy.get(world).tick(world);
     }
 }
