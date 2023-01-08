@@ -5,7 +5,7 @@ import com.reclizer.inevo.tools.IEnergizedItem;
 import com.reclizer.inevo.init.ModCreativeTab;
 import com.reclizer.inevo.util.ItemDataUtils;
 import com.reclizer.inevo.util.LangUtils;
-import com.reclizer.inevo.util.MekanismUtils;
+import com.reclizer.inevo.util.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -45,7 +45,7 @@ public class ItemEnergyBase extends ItemBase implements IEnergizedItem{
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
-        list.add(EnumColor.AQUA + LangUtils.localize("tooltip.storedEnergy") + ": " + EnumColor.GREY + MekanismUtils.getEnergyDisplay(getEnergy(itemstack), getMaxEnergy(itemstack)));
+        list.add(EnumColor.AQUA + LangUtils.localize("tooltip.storedEnergy") + ": " + EnumColor.GREY + TooltipUtils.getEnergyDisplay(getEnergy(itemstack), getMaxEnergy(itemstack)));
     }
 
     @Override

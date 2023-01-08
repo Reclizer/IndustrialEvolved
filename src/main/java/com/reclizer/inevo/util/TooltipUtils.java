@@ -3,7 +3,7 @@ package com.reclizer.inevo.util;
 import com.reclizer.inevo.others.UnitDisplayUtils;
 import com.reclizer.inevo.others.UnitDisplayUtils.ElectricUnit;
 
-public class MekanismUtils {
+public class TooltipUtils {
 
     public static String getEnergyDisplay(double energy) {
         if (energy == Double.MAX_VALUE) {
