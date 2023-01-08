@@ -1,16 +1,13 @@
 package com.reclizer.inevo.item;
 
-import com.reclizer.inevo.IndustrialEvolved;
-import com.reclizer.inevo.api.energy.EnumColor;
-import com.reclizer.inevo.api.energy.IEnergizedItem;
+import com.reclizer.inevo.tools.EnumColor;
+import com.reclizer.inevo.tools.IEnergizedItem;
 import com.reclizer.inevo.init.ModCreativeTab;
-import com.reclizer.inevo.util.IHasModel;
 import com.reclizer.inevo.util.ItemDataUtils;
 import com.reclizer.inevo.util.LangUtils;
 import com.reclizer.inevo.util.MekanismUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;

@@ -1,4 +1,4 @@
-package com.reclizer.inevo.api.energy;
+package com.reclizer.inevo.tools;
 
 import net.minecraft.item.ItemStack;
 
