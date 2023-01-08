@@ -12,6 +12,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.Random;
+//巫术学mod的粒子构建器,参考
+// https://github.com/Electroblob77/Wizardry/blob/1.12.2/src/main/java/electroblob/wizardry/util/ParticleBuilder.java
+//粒子构建器只能在客户端运行
 
 /**
  * <i>"Don't waste time spawning particles manually - let {@code ParticleBuilder} do the work for you!"</i>
