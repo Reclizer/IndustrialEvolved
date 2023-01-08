@@ -1,4 +1,4 @@
-package com.reclizer.inevo.net;
+package com.reclizer.inevo.network;
 
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.client.player.OverlayRenderer;

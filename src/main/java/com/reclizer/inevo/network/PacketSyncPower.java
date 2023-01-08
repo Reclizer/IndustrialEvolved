@@ -1,11 +1,9 @@
-package com.reclizer.inevo.net;
+package com.reclizer.inevo.network;
 
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.tools.IEnergyContainer;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

@@ -1,4 +1,4 @@
-package com.reclizer.inevo.net;
+package com.reclizer.inevo.network;
 
 
 import com.reclizer.inevo.input.PacketToggleMode;

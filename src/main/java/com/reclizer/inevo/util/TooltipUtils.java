@@ -1,7 +1,6 @@
 package com.reclizer.inevo.util;
 
-import com.reclizer.inevo.others.UnitDisplayUtils;
-import com.reclizer.inevo.others.UnitDisplayUtils.ElectricUnit;
+import com.reclizer.inevo.util.UnitDisplayUtils.ElectricUnit;
 
 public class TooltipUtils {
 

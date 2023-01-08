@@ -1,4 +1,4 @@
-package com.reclizer.inevo.others;
+package com.reclizer.inevo.util;
 
 /**
  * Code taken from UE and modified to fit Mekanism.

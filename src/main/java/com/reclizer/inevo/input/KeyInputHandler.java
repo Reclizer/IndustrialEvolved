@@ -1,6 +1,6 @@
 package com.reclizer.inevo.input;
 
-import com.reclizer.inevo.net.Messages;
+import com.reclizer.inevo.network.Messages;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 

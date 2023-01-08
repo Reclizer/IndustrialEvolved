@@ -1,4 +1,4 @@
-package com.reclizer.inevo.others;
+package com.reclizer.inevo.tools;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;

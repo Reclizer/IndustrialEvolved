@@ -1,9 +1,8 @@
 package com.reclizer.inevo.gui.fastFurnace;
 
-import com.reclizer.inevo.blocks.tileEntity.TileEntityEnergyStorage;
 import com.reclizer.inevo.blocks.tileEntity.TileEntityFastFurnace;
-import com.reclizer.inevo.net.Messages;
-import com.reclizer.inevo.net.PacketSyncPower;
+import com.reclizer.inevo.network.Messages;
+import com.reclizer.inevo.network.PacketSyncPower;
 import com.reclizer.inevo.tools.IEnergyContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

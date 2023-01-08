@@ -1,16 +1,13 @@
 package com.reclizer.inevo.player;
 
-import com.reclizer.inevo.net.Messages;
-import com.reclizer.inevo.net.PacketSendSummoned;
+import com.reclizer.inevo.network.Messages;
+import com.reclizer.inevo.network.PacketSendSummoned;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
-
-import java.util.Map;
 
 public class WorldSummoned extends WorldSavedData {
 
