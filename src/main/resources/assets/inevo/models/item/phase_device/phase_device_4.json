@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1":"inevo:items/weapon/phase_device"
+		"1":"inevo:items/weapon/phase_device/phase_device_4"
 	},
 	"elements": [
 		{
@@ -585,29 +585,6 @@
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [36, 37, 38, 39]
-		}
-	],
-
-	"overrides": [
-		{
-			"predicate": { "inevo:phase_device_state": 0.1 },
-			"model": "inevo:item/phase_device/phase_device_1"
-		},
-		{
-			"predicate": { "inevo:phase_device_state": 0.2 },
-			"model": "inevo:item/phase_device/phase_device_2"
-		},
-		{
-			"predicate": { "inevo:phase_device_state": 0.3 },
-			"model": "inevo:item/phase_device/phase_device_3"
-		},
-		{
-			"predicate": { "inevo:phase_device_state": 0.4 },
-			"model": "inevo:item/phase_device/phase_device_4"
-		},
-		{
-			"predicate": { "inevo:phase_device_state": 0.5 },
-			"model": "inevo:item/phase_device/phase_device_5"
 		}
 	]
 }
