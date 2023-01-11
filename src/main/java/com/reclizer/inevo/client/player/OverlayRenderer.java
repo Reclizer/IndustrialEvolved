@@ -29,9 +29,12 @@ public class OverlayRenderer {
             return;
         }
 
-        if (Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.PHASEDEVICE) {
+        if (Minecraft.getMinecraft().player.getHeldItem(EnumHand.MAIN_HAND).getItem() != ModItems.PHASEDEVICE
+        &&Minecraft.getMinecraft().player.getHeldItem(EnumHand.OFF_HAND).getItem() != ModItems.PHASEDEVICE) {
             return;
         }
+
+
 
         GlStateManager.disableLighting();
 
@@ -40,7 +43,7 @@ public class OverlayRenderer {
         int x = 220;
         int y = 10;
         x = fontRenderer.drawString(LangUtils.localize("tooltip.space_energy"), x, y, 0xffffffff);
-        x = fontRenderer.drawString("" + (playerEnergy), x, y, 0xffff0000);
+        x = fontRenderer.drawString("" + (playerEnergy), x, y, 0xff0000ff);
 //        x = fontRenderer.drawString("Summoned ", x, y, 0xffffffff);
 //        x = fontRenderer.drawString("" + summoned, x, y, 0xffff0000);
 //        x = fontRenderer.drawString("  Influence ", x, y, 0xffffffff);

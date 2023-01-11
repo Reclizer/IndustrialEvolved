@@ -149,7 +149,7 @@ public class EntityFloatingCannon extends EntityEnergyConstruct{
 
     }
 
-    public boolean isValidTarget(Entity target){
+    public boolean isValidTarget(EntityLivingBase target){
         return AllyDesignationSystem.isValidTarget(this.getMaster(), target);
     }
 

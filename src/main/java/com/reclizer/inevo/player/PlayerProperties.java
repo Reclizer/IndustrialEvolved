@@ -8,7 +8,7 @@ public class PlayerProperties {
     @CapabilityInject(PlayerEnergy.class)
     public static Capability<PlayerEnergy> PLAYER_SPACEENERGY;
 
-    public static PlayerEnergy getPlayerSummoned(EntityPlayer player) {
+    public static PlayerEnergy getPlayerEnergy(EntityPlayer player) {
         return player.getCapability(PLAYER_SPACEENERGY, null);
     }
 }

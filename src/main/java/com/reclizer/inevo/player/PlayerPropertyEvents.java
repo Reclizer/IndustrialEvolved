@@ -26,7 +26,7 @@ public class PlayerPropertyEvents {
             // We need to copyFrom the capabilities
             if (event.getOriginal().hasCapability(PlayerProperties.PLAYER_SPACEENERGY, null)) {
                 PlayerEnergy oldStore = event.getOriginal().getCapability(PlayerProperties.PLAYER_SPACEENERGY, null);
-                PlayerEnergy newStore = PlayerProperties.getPlayerSummoned(event.getEntityPlayer());
+                PlayerEnergy newStore = PlayerProperties.getPlayerEnergy(event.getEntityPlayer());
                 newStore.copyFrom(oldStore);
             }
         }

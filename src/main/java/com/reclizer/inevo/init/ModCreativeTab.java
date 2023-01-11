@@ -12,7 +12,7 @@ public class ModCreativeTab {
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem()
         {
-            return new ItemStack(ModItems.PHASE_SWORD);//群组图标
+            return new ItemStack(ModItems.HYPER_ENGINE);//群组图标
         }
     };
 }

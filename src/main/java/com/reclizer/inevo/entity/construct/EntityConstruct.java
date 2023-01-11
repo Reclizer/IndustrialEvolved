@@ -3,10 +3,11 @@ package com.reclizer.inevo.entity.construct;
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.player.PlayerEnergy;
 import com.reclizer.inevo.player.PlayerProperties;
-import com.reclizer.inevo.util.AllyDesignationSystem;
 import com.reclizer.inevo.util.EntityUtils;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
@@ -14,45 +15,42 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public abstract class EntityEnergyConstruct extends EntityCreature implements IEntityOwnable, IEntityAdditionalSpawnData {
-
-    public int lifetime = 600;
+public abstract class EntityConstruct extends Entity implements IEntityOwnable, IEntityAdditionalSpawnData {
     private UUID masterUUID;
+    public int lifetime = 600;
 
-    public EntityEnergyConstruct(World worldIn) {
+    public EntityConstruct(World worldIn) {
         super(worldIn);
-
-    }
-    @Override
-    protected void initEntityAI() {
-        //this.targetTasks.addTask(1, new EntityAIMasterHurtByTarget(this));
+        this.noClip = true;
     }
 
+    // Overrides the original to stop the entity moving when it intersects stuff. The default arrow does this to allow
+    // it to stick in blocks.
     @Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
+    @SideOnly(Side.CLIENT)
+    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport){
+        this.setPosition(x, y, z);
+        this.setRotation(yaw, pitch);
+    }
+
+    public void onUpdate(){
+
         if(this.ticksExisted > lifetime && lifetime != -1){
             this.despawn();
         }
-        if(this.getMaster()==null){
-            this.despawn();
-        }
+
+        super.onUpdate();
+
     }
 
-    public boolean isValidTarget(EntityLivingBase target){
-        return AllyDesignationSystem.isValidTarget(this, target);
-    }
 
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        //this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-        //this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(50.0D);
-    }
+
 
     @Override
     public EnumActionResult applyPlayerInteraction(EntityPlayer player, Vec3d vec, EnumHand hand){
@@ -79,21 +77,30 @@ public abstract class EntityEnergyConstruct extends EntityCreature implements IE
 
 
 
-    @Override//∂‘À§¬‰…À∫¶√‚“ﬂ
-    public void fall(float distance, float damageMultiplier){}
-
-
-    @Nullable
     @Override
-    public UUID getOwnerId() {
-        return masterUUID;
+    protected void entityInit(){
+        // We could leave this unimplemented, but since the majority of subclasses don't use it, let's make it optional
     }
 
-    @Nullable
+//==================================================================================================================
     @Override
-    public Entity getOwner() {
-        return getMaster();
+    public void readEntityFromNBT(NBTTagCompound nbttagcompound){
+        //super.readEntityFromNBT(nbttagcompound);
+        if(nbttagcompound.hasUniqueId("masterUUID")) masterUUID = nbttagcompound.getUniqueId("masterUUID");
+        lifetime = nbttagcompound.getInteger("lifetime");
+        //damageMultiplier = nbttagcompound.getFloat("damageMultiplier");
     }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbttagcompound){
+        //super.writeEntityToNBT(nbttagcompound);
+        if(masterUUID != null){
+            nbttagcompound.setUniqueId("masterUUID", masterUUID);
+        }
+        nbttagcompound.setInteger("lifetime", lifetime);
+        //nbttagcompound.setFloat("damageMultiplier", damageMultiplier);
+    }
+
 
     @Override
     public void writeSpawnData(ByteBuf buffer) {
@@ -119,11 +126,21 @@ public abstract class EntityEnergyConstruct extends EntityCreature implements IE
         }
     }
 
-    /**
-     * Returns the EntityLivingBase that created this construct, or null if it no longer exists. Cases where the entity
-     * may no longer exist are: entity died or was deleted, mob despawned, player logged out, entity teleported to
-     * another dimension, or this construct simply had no master in the first place.
-     */
+
+    //===========================================================
+    @Nullable
+    @Override
+    public UUID getOwnerId() {
+        return masterUUID;
+    }
+
+    @Nullable
+    @Override
+    public Entity getOwner() {
+        return getMaster();
+    }
+
+
     @Nullable
     public EntityLivingBase getMaster(){ // Kept despite the above method because it returns an EntityLivingBase
 
@@ -141,38 +158,6 @@ public abstract class EntityEnergyConstruct extends EntityCreature implements IE
         this.masterUUID = master == null ? null : master.getUniqueID();
     }
 
-
-    public boolean hasMaster(){
-        if(this.getMaster()!=null){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-
-    public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner)
-    {
-        return true;
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbttagcompound){
-        //super.readEntityFromNBT(nbttagcompound);
-        if(nbttagcompound.hasUniqueId("masterUUID")) masterUUID = nbttagcompound.getUniqueId("masterUUID");
-        lifetime = nbttagcompound.getInteger("lifetime");
-        //damageMultiplier = nbttagcompound.getFloat("damageMultiplier");
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbttagcompound){
-        //super.writeEntityToNBT(nbttagcompound);
-        if(masterUUID != null){
-            nbttagcompound.setUniqueId("masterUUID", masterUUID);
-        }
-        nbttagcompound.setInteger("lifetime", lifetime);
-        //nbttagcompound.setFloat("damageMultiplier", damageMultiplier);
-    }
 
 
     @Override

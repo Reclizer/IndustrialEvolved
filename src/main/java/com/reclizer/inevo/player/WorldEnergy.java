@@ -54,14 +54,14 @@ public class WorldEnergy extends WorldSavedData {
     private void sendSpaceEnergy(World world) {
         for (EntityPlayer player : world.playerEntities) {
 
-            PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(player);
+            PlayerEnergy playerEnergy = PlayerProperties.getPlayerEnergy(player);
             Messages.INSTANCE.sendTo(new PacketSendSummoned(playerEnergy.getSpaceEnergy()), (EntityPlayerMP) player);
         }
     }
 
     private void growSpaceEnergy(World world) {
         for (EntityPlayer player : world.playerEntities) {
-            PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(player);
+            PlayerEnergy playerEnergy = PlayerProperties.getPlayerEnergy(player);
             playerEnergy.setSpaceEnergy(playerEnergy.getSpaceEnergy()<playerEnergy.getMaxSpaceEnergy() ? playerEnergy.getSpaceEnergy()+1: playerEnergy.getSpaceEnergy());
         }
     }

@@ -87,7 +87,7 @@ public class ItemAntigravityEquipment extends EnergyBaubleTemplate{
             //p.capabilities.allowFlying = true;
             World world =p.world;
             if(!world.isRemote){
-                PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(p);
+                PlayerEnergy playerEnergy = PlayerProperties.getPlayerEnergy(p);
                 playerEnergy.setMaxSpaceEnergy(playerEnergy.getMaxSpaceEnergy()+4);
 
             }
@@ -101,7 +101,7 @@ public class ItemAntigravityEquipment extends EnergyBaubleTemplate{
             //p.capabilities.allowFlying = true;
             World world =p.world;
             if(!world.isRemote){
-                PlayerEnergy playerEnergy = PlayerProperties.getPlayerSummoned(p);
+                PlayerEnergy playerEnergy = PlayerProperties.getPlayerEnergy(p);
                 playerEnergy.setMaxSpaceEnergy(playerEnergy.getMaxSpaceEnergy()-4);
 
             }

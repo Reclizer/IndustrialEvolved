@@ -27,6 +27,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
+import static com.reclizer.inevo.potion.PotionRegistryHandler.PHASE_POTION_II;
+
 public class ItemPhaseDevice extends ItemEnergyBase {
     private int chargeTime;
     private final int maxCharge=400;
@@ -49,7 +51,7 @@ public class ItemPhaseDevice extends ItemEnergyBase {
 
                if(isHyperState){
                    //if(chargeValue%100==0) {
-                       int i = chargeValue<100 ? 0:chargeValue<200 ?1:chargeValue<300 ?2:chargeValue<400 ? 3:chargeValue<500 ?4:0;
+                       int i = chargeValue<300 ? 0:chargeValue<600 ?1:chargeValue<900 ?2:chargeValue<1200 ? 3:chargeValue<1500 ?4:0;
                        switch (i) {
                            case 0:
                                hyperState = 0.1f;
@@ -80,10 +82,14 @@ public class ItemPhaseDevice extends ItemEnergyBase {
     }
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int something, boolean somethingelse) {
+        if(getEnergy(stack)<100){
+            setHyperState(stack,false);
+            return;
+        }
         if(!world.isRemote&&getHyperState(stack)) {
 
             int chargeValue =getChargeValue(stack);
-            if(chargeValue<400){
+            if(chargeValue<1200){
                 setChargeValue(stack,chargeValue+1);
             }else {
                 setPortalState(stack,true);
@@ -91,41 +97,26 @@ public class ItemPhaseDevice extends ItemEnergyBase {
         }
     }
 
-//    private void updateAnimeState(ItemStack stack, Entity entity){
-//        if(stack.isEmpty()) return;
-//        if(!(stack.getItem() instanceof ItemPhaseDevice)) return;
-//
-//        NBTTagCompound tag = stack.getOrCreateSubCompound("chargeValue");
-//        boolean currentState = tag.getBoolean(HAS_SHIELD);
-//
-//        boolean updateState = false;
-//        if(entity instanceof EntityLivingBase){
-//            EntityLivingBase owner = (EntityLivingBase) entity;
-//            ItemStack shield = owner.getHeldItemOffhand();
-//            if(!shield.isEmpty()){
-//                if(shield.getItem().isShield(shield, owner))
-//                    updateState = true;
-//            }
-//        }
-//    }
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
     {
-        if(getHyperState(newStack)){
-            return false;
-        }else {
-            return true;
-        }
+//        if(getHyperState(newStack)){
+//            return false;
+//        }else {
+//            return true;
+//        }
         //return !oldStack.equals(newStack); //!ItemStack.areItemStacksEqual(oldStack, newStack);
+        return false;
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack item = player.getHeldItem(hand);
         // ²¥·ÅÓÒ¼üµÄÉùÒô
-        world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-
+        if(getEnergy(item)<100){
+            return new ActionResult<>(EnumActionResult.FAIL, item);
+        }
 
 
         if(player.isSneaking()){
@@ -137,18 +128,24 @@ public class ItemPhaseDevice extends ItemEnergyBase {
 
 
         if (!world.isRemote) {
+
             if(!getHyperState(item)){
                 if(getEnergy(item) > 0){
+                    world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                     player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 25, 0));
                     if (!player.capabilities.isCreativeMode) {
-                        setEnergy(item, getEnergy(item) - 1000);
+                        setEnergy(item, getEnergy(item) - 100);
                     }
                     player.getCooldownTracker().setCooldown(this, 60);
                 }
             }else {
                 if(getPortalState(item)){
-                    player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 100, 0));
-                    //player.getCooldownTracker().setCooldown(this, 600);
+                    if(player.isPotionActive(PHASE_POTION_II)){
+                        player.clearActivePotions();
+                        return new ActionResult<>(EnumActionResult.FAIL, item);
+                    }
+                    world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                    player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 1000, 0));
                     setPortalState(item,false);
                     setChargeValue(item,0);
                     setHyperValue(item,0.1f);
