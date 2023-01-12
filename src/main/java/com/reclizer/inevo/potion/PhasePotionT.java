@@ -111,7 +111,8 @@ public class PhasePotionT extends Potion {
     public static void onPlayerAtk(LivingAttackEvent event) {
         if(event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-            if(player.getActivePotionEffect(PHASE_POTION_II)!= null){
+            DamageSource damageSource = event.getSource();
+            if(player.getActivePotionEffect(PHASE_POTION_II)!= null&&!"outOfWorld".equals(damageSource.getDamageType())){
                 event.setCanceled(true);
                 return;
             }

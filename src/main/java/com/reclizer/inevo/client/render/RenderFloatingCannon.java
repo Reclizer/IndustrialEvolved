@@ -1,7 +1,7 @@
 package com.reclizer.inevo.client.render;
 
 import com.reclizer.inevo.client.model.entity.ModelFloatingCannon;
-import com.reclizer.inevo.entity.construct.EntityFloatingCannon;
+import com.reclizer.inevo.entity.creature.EntityFloatingCannon;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

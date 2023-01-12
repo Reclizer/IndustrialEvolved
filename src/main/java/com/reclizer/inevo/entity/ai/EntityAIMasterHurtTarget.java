@@ -1,6 +1,6 @@
 package com.reclizer.inevo.entity.ai;
 
-import com.reclizer.inevo.entity.construct.EntityEnergyConstruct;
+import com.reclizer.inevo.entity.creature.EntityEnergyConstruct;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
 

@@ -1,26 +1,17 @@
 package com.reclizer.inevo.item.weapon;
 
 import com.reclizer.inevo.IndustrialEvolved;
-import com.reclizer.inevo.entity.construct.EntityFloatingCannon;
 import com.reclizer.inevo.item.ItemEnergyBase;
 
-import com.reclizer.inevo.item.ModItems;
-import com.reclizer.inevo.player.PlayerProperties;
-import com.reclizer.inevo.player.PlayerEnergy;
 import com.reclizer.inevo.potion.PotionRegistryHandler;
-import com.reclizer.inevo.tools.RayTraceTools;
-import com.reclizer.inevo.util.ParticleBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -139,11 +130,11 @@ public class ItemPhaseDevice extends ItemEnergyBase {
                     player.getCooldownTracker().setCooldown(this, 60);
                 }
             }else {
+                if(player.isPotionActive(PHASE_POTION_II)){
+                    player.clearActivePotions();
+                    return new ActionResult<>(EnumActionResult.FAIL, item);
+                }
                 if(getPortalState(item)){
-                    if(player.isPotionActive(PHASE_POTION_II)){
-                        player.clearActivePotions();
-                        return new ActionResult<>(EnumActionResult.FAIL, item);
-                    }
                     world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                     player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 1000, 0));
                     setPortalState(item,false);

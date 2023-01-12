@@ -1,4 +1,4 @@
-package com.reclizer.inevo.entity.construct;
+package com.reclizer.inevo.entity.creature;
 
 
 import com.reclizer.inevo.client.audio.InevoSounds;

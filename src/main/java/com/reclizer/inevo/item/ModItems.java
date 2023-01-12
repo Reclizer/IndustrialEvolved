@@ -28,6 +28,10 @@ public class ModItems {
     public static final Item PHASE_SWORD = new ItemPhaseSword(12000,"phase_sword");//最后一项模仿钻石剑的钻石修复和耐久属性
     public static final Item ELECTRICBOW = new ItemElectricBow(12000,"electri_bow");
     public static final Item PHASEDEVICE =new ItemPhaseDevice(12000,"phase_device");
+    public static final Item DE_BUG =new ItemDeBug("item_debug");
+    
+
+
 
     public static final Item ANTIGRAVITY =new ItemAntigravityEquipment(12000,"antigravity_equipment");
     public static final Item HYPER_ENGINE =new ItemHyperEngine("hyper_engine");
