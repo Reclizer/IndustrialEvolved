@@ -58,7 +58,7 @@ public abstract class EntityEnergyConstruct extends EntityCreature implements IE
     public EnumActionResult applyPlayerInteraction(EntityPlayer player, Vec3d vec, EnumHand hand){
 
         // Permanent constructs can now be dispelled by sneak-right-clicking
-        //&& player.getHeldItem(hand).getItem() instanceof ISpellCastingItem  &&lifetime == -1
+        //&& player.getHeldItem(hand).getItem() instanceof ModItem  &&lifetime == -1
         if(getMaster() == player && player.isSneaking() ){
             PlayerEnergy playerEnergy = PlayerProperties.getPlayerEnergy(player);
             playerEnergy.setSpaceEnergy(playerEnergy.getSpaceEnergy()+5);
