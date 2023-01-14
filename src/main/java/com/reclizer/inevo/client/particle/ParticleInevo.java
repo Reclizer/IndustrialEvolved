@@ -4,6 +4,7 @@ import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.proxy.ClientProxy;
 import com.reclizer.inevo.tools.ICustomHitbox;
 import com.reclizer.inevo.util.EntityUtils;
+import javafx.scene.transform.Rotate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -78,7 +79,7 @@ public abstract class ParticleInevo extends Particle {
     protected float angle;
     protected double radius = 0;
     protected double speed = 0;
-
+    protected float rotate=0;
     /** The entity this particle is linked to. The particle will move with this entity. */
     @Nullable
     protected Entity entity = null;
@@ -185,18 +186,24 @@ public abstract class ParticleInevo extends Particle {
      * @param radius The spin radius
      * @param speed The spin speed in rotations per tick
      */
-    public void setSpin(double radius, double speed){
+    public void setSpin(double radius, double speed,float rotate){
         this.radius = radius;
+        this.rotate=rotate;
+
         this.speed = speed * 2 * Math.PI; // Converts rotations per tick into radians per tick for the trig functions
         this.angle = this.rand.nextFloat() * (float)Math.PI * 2; // Random start angle
         // Need to set the start position or the circle won't be centred on the correct position
-        this.posX = relativeX - radius * MathHelper.cos(angle);
-        this.posZ = relativeZ + radius * MathHelper.sin(angle);
+        //this.posX = relativeX - radius * MathHelper.cos(angle);
+        //this.posZ = relativeZ + radius * MathHelper.sin(angle);
+        ////this.posY = relativeY + radius * MathHelper.sin(angle);
         // Set these to the correct values
         this.relativeMotionX = motionX;
         this.relativeMotionY = motionY;
         this.relativeMotionZ = motionZ;
     }
+
+
+
 
     /**
      * Links this particle to the given entity. This will cause its position and velocity to be relative to the entity.
@@ -416,8 +423,11 @@ public abstract class ParticleInevo extends Particle {
             if(radius > 0){
                 angle += speed;
                 // If the particle has spin, x/z relative position is used as centre and coords are changed each tick
-                x += radius * -MathHelper.cos(angle);
-                z += radius * MathHelper.sin(angle);
+                float rotate = this.rotate/180*(float)Math.PI;
+
+                x += radius *-MathHelper.cos(angle)*-MathHelper.cos(rotate);
+                z += radius *-MathHelper.cos(angle)*MathHelper.sin(rotate);
+                y += radius * MathHelper.sin(angle);
             }
 
             this.setPosition(x, y, z);

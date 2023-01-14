@@ -71,6 +71,7 @@ public final class ParticleBuilder {
     private float fr, fg, fb;
     private double radius;
     private double rpt;
+    private float rotate;
     private int lifetime;
     private boolean gravity;
     private boolean shaded;
@@ -409,10 +410,11 @@ public final class ParticleBuilder {
      * @return The particle builder instance, allowing other methods to be chained onto this one
      * @throws IllegalStateException if the particle builder is not yet building.
      */
-    public ParticleBuilder spin(double radius, double speed){
+    public ParticleBuilder spin(double radius, double speed,float rotate){
         if(!building) throw new IllegalStateException("Not building yet!");
         this.radius = radius;
         this.rpt = speed;
+        this.rotate=rotate;
         return this;
     }
 
@@ -637,7 +639,7 @@ public final class ParticleBuilder {
         if(r >= 0 && g >= 0 && b >= 0) 										particle.setRBGColorF(r, g, b);
         if(fr >= 0 && fg >= 0 && fb >= 0)									particle.setFadeColour(fr, fg, fb);
         if(lifetime >= 0) 													particle.setMaxAge(lifetime);
-        if(radius > 0) 														particle.setSpin(radius, rpt);
+        if(radius > 0) 														particle.setSpin(radius, rpt, rotate);
         if(!Float.isNaN(yaw) && !Float.isNaN(pitch)) 						particle.setFacing(yaw, pitch);
         if(seed != 0)														particle.setSeed(seed);
         if(!Double.isNaN(tvx) && !Double.isNaN(tvy) && !Double.isNaN(tvz)) 	particle.setTargetVelocity(tvx, tvy, tvz);

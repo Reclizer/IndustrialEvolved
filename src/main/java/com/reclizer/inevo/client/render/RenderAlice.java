@@ -44,14 +44,4 @@ public class RenderAlice extends RenderBiped<EntityAlice> {
 
 
 
-    //public static final RenderAlice.Factory FACTORY = new RenderAlice.Factory();
-
-//    public static class Factory implements IRenderFactory<RenderAlice> {
-//
-//        @Override
-//        public Render<? super RenderAlice> createRenderFor(RenderManager manager) {
-//            return new RenderAlice(manager);
-//        }
-//
-//    }
 }

@@ -2,10 +2,7 @@ package com.reclizer.inevo.proxy;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.reclizer.inevo.IndustrialEvolved;
-import com.reclizer.inevo.client.particle.ParticleBeam;
-import com.reclizer.inevo.client.particle.ParticleDust;
-import com.reclizer.inevo.client.particle.ParticleInevo;
-import com.reclizer.inevo.client.particle.ParticleSparkle;
+import com.reclizer.inevo.client.particle.*;
 import com.reclizer.inevo.client.player.OverlayRenderer;
 import com.reclizer.inevo.entity.ModEntities;
 import com.reclizer.inevo.input.KeyBindings;
@@ -105,6 +102,7 @@ public class ClientProxy extends CommonProxy {
         ParticleInevo.registerParticle(Type.BEAM, ParticleBeam::new);
         ParticleInevo.registerParticle(Type.DUST, ParticleDust::new);
         ParticleInevo.registerParticle(Type.SPARKLE, ParticleSparkle::new);
+        ParticleInevo.registerParticle(Type.CLOUD, ParticleCloud::new);
 
     }
 

@@ -12,6 +12,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ItemDeBug extends ItemBase{
@@ -27,10 +29,15 @@ public class ItemDeBug extends ItemBase{
         world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
                 if(!world.isRemote){
-                EntityPhasePortal floatingCannon = new EntityPhasePortal(world);
-                floatingCannon.setPosition(player.posX, player.posY+3, player.posZ);
-                floatingCannon.setMaster(player);
-                world.spawnEntity(floatingCannon);
+
+
+                EntityPhasePortal portal = new EntityPhasePortal(world);
+//                    Vec3d start = player.getPositionEyes(1.0f);
+                portal.setRotation(MathHelper.wrapDegrees(-player.rotationYaw + 180));
+                portal.setPosition(player.posX, player.posY+0.4f, player.posZ);
+                //portal.setPosition(start.x, start.y, start.z);
+                portal.setMaster(player);
+                world.spawnEntity(portal);
         }
         return new ActionResult<>(EnumActionResult.FAIL, item);
     }
