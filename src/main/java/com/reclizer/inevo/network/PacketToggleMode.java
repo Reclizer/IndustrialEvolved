@@ -1,4 +1,4 @@
-package com.reclizer.inevo.input;
+package com.reclizer.inevo.network;
 
 import com.reclizer.inevo.item.weapon.ItemPhaseSword;
 import io.netty.buffer.ByteBuf;

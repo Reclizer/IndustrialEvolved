@@ -27,7 +27,7 @@ public abstract class EntityConstruct extends Entity implements IEntityOwnable, 
 
     public EntityConstruct(World worldIn) {
         super(worldIn);
-        this.noClip = true;
+        //this.noClip = true;
     }
 
     // Overrides the original to stop the entity moving when it intersects stuff. The default arrow does this to allow

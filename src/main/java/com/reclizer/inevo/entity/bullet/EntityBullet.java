@@ -1,11 +1,9 @@
 package com.reclizer.inevo.entity.bullet;
 
+import com.reclizer.inevo.entity.construct.EntityPhasePortal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
@@ -23,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityBullet extends Entity {
 
+
     private EntityLivingBase shootingEntity;
     protected EntityLivingBase thrower;
     private int ticksAlive;
@@ -33,6 +32,15 @@ public class EntityBullet extends Entity {
     public double posEndX;
     public double posEndY;
     public double posEndZ;
+    public float damage=10.0F;
+    public float flySpeed=2.00F;
+    public int lifetime = 100;
+    public int stagnation=20;
+    public  double distanceMax=200;
+    public double posSpawnX;
+    public double posSpawnY;
+    public double posSpawnZ;
+
 
     public EntityBullet(World worldIn) {
         super(worldIn);
@@ -64,7 +72,7 @@ public class EntityBullet extends Entity {
             super.onUpdate();
 
             ++this.ticksInAir;
-            RayTraceResult raytraceresult = ProjectileHelper.forwardsRaycast(this, true, this.ticksInAir >= 25, this.shootingEntity);
+            RayTraceResult raytraceresult = ProjectileHelper.forwardsRaycast(this, true, this.ticksInAir >= 20, this.shootingEntity);
 
             if (raytraceresult != null && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
                 this.onImpact(raytraceresult);
@@ -82,14 +90,12 @@ public class EntityBullet extends Entity {
                 }
 
             }
-            if(this.ticksExisted>=100){
-                this.setDead();
-            }
 
 
-            for (int i = 0; i < 10; ++i) {
-                this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
-            }
+
+//            for (int i = 0; i < 10; ++i) {
+//                this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
+//            }
 
 
 
@@ -100,38 +106,60 @@ public class EntityBullet extends Entity {
             this.motionY *= f;
             this.motionZ *= f;
 
-            if(this.ticksInAir>=15){
-                f=0.0F;
-                this.motionX=0.0F;
-                this.motionY=0.0F;
-                this.motionZ=0.0F;
+
+
+            this.setPosition(this.posX, this.posY, this.posZ);
+
+        if(!this.world.isRemote){
+            if(this.ticksExisted > lifetime){
+                this.deSpawn();
             }
-                this.setPosition(this.posX, this.posY, this.posZ);
 
+//            if(this.ticksInAir>=stagnation){
+//                f=0.0F;
+//                this.motionX=0.0F;
+//                this.motionY=0.0F;
+//                this.motionZ=0.0F;
+//            }
 
+        if(this.getDistanceSq(this.posSpawnX,this.posSpawnY,this.posSpawnZ)>distanceMax){
+            this.deSpawn();
+        }
+        }
 
 
         } else {
 
-            this.setDead();
+            deSpawn();
         }
+
+
     }
+
+    public void deSpawn(){
+        this.setDead();
+    }
+
+
 
     public BlockPos getPositionEnd(){
         return new BlockPos(this.posEndX, this.posEndY, this.posEndZ);// + 0.5D
     }
 
     protected float getMotionFactor() {
-        return 2.00F;
+        return flySpeed;
     }
+
+
+
 
     protected void onImpact(RayTraceResult result) {
 
         if (!this.world.isRemote) {
             if (result.entityHit != null) {
-                result.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.shootingEntity), 10.0F);
+                result.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.shootingEntity), damage);
             }
-            this.setDead();
+            deSpawn();
         }
     }
 
@@ -140,6 +168,10 @@ public class EntityBullet extends Entity {
         compound.setTag("direction", this.newDoubleNBTList(this.motionX, this.motionY, this.motionZ));
         compound.setTag("power", this.newDoubleNBTList(this.accelerationX, this.accelerationY, this.accelerationZ));
         compound.setInteger("life", this.ticksAlive);
+        compound.setInteger("lifetime", lifetime);
+        compound.setInteger("stagnation", stagnation);
+        compound.setTag("spawnPos", this.newDoubleNBTList(this.posSpawnX, this.posSpawnY, this.posSpawnZ));
+
     }
 
     @Override
@@ -162,8 +194,19 @@ public class EntityBullet extends Entity {
             this.motionY = nbttaglist1.getDoubleAt(1);
             this.motionZ = nbttaglist1.getDoubleAt(2);
         } else {
-            this.setDead();
+            deSpawn();
         }
+        if (compound.hasKey("spawnPos", 9) && compound.getTagList("spawnPos", 6).tagCount() == 3){
+            NBTTagList nbttaglist2 = compound.getTagList("spawnPos", 6);
+            this.posSpawnX = nbttaglist2.getDoubleAt(0);
+            this.posSpawnY = nbttaglist2.getDoubleAt(1);
+            this.posSpawnZ = nbttaglist2.getDoubleAt(2);
+        }else {
+            deSpawn();
+        }
+
+        lifetime = compound.getInteger("lifetime");
+        stagnation=compound.getInteger("stagnation");
     }
 
     @Override

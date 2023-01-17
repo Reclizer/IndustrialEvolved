@@ -233,7 +233,7 @@ public class ItemPhaseSword extends ItemEnergyBase {
             switch (getMode(itemstack)){
                 case PHASE:
                     phaseBullet(world, player,ticksRight);
-                    //player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 25, 0));
+                    player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 20, 0));
                     ticksRight=0;
                     //player.getCooldownTracker().setCooldown(this, 60);
                     player.getCooldownTracker().setCooldown(this, 60);
@@ -365,7 +365,7 @@ public class ItemPhaseSword extends ItemEnergyBase {
             int i=ticks;
             RayTraceTools.Beam beam = new RayTraceTools.Beam(world, player, i);
             spawnBullet(player, beam);
-            //player.setPositionAndUpdate(beam.getEnd().x,beam.getEnd().y,beam.getEnd().z);
+            player.setPositionAndUpdate(beam.getEnd().x,beam.getEnd().y,beam.getEnd().z);
 
         //}
     }

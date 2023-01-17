@@ -1,9 +1,11 @@
 package com.reclizer.inevo.item.weapon;
 
 import com.reclizer.inevo.IndustrialEvolved;
+import com.reclizer.inevo.entity.construct.EntityPhasePortal;
 import com.reclizer.inevo.item.ItemEnergyBase;
 
 import com.reclizer.inevo.potion.PotionRegistryHandler;
+import com.reclizer.inevo.tools.Vector3;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +14,7 @@ import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -77,11 +80,15 @@ public class ItemPhaseDevice extends ItemEnergyBase {
             setHyperState(stack,false);
             return;
         }
-        if(!world.isRemote&&getHyperState(stack)) {
 
+        if(!world.isRemote&&getHyperState(stack)) {
+            EntityPlayer player=(EntityPlayer)entity;
             int chargeValue =getChargeValue(stack);
             if(chargeValue<1200){
                 setChargeValue(stack,chargeValue+1);
+                if (!player.capabilities.isCreativeMode) {
+                    setEnergy(stack, getEnergy(stack) - 1);
+                }
             }else {
                 setPortalState(stack,true);
             }
@@ -119,7 +126,10 @@ public class ItemPhaseDevice extends ItemEnergyBase {
 
 
         if (!world.isRemote) {
-
+            if(player.isPotionActive(PHASE_POTION_II)){
+                player.clearActivePotions();
+                return new ActionResult<>(EnumActionResult.SUCCESS, item);
+            }
             if(!getHyperState(item)){
                 if(getEnergy(item) > 0){
                     world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -130,17 +140,27 @@ public class ItemPhaseDevice extends ItemEnergyBase {
                     player.getCooldownTracker().setCooldown(this, 60);
                 }
             }else {
-                if(player.isPotionActive(PHASE_POTION_II)){
-                    player.clearActivePotions();
-                    return new ActionResult<>(EnumActionResult.FAIL, item);
-                }
+
                 if(getPortalState(item)){
                     world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    player.addPotionEffect(new PotionEffect(PotionRegistryHandler.PHASE_POTION_II, 1000, 0));
+                    //====================================
+                    Vector3 look = new Vector3(player.getLookVec()).multiply(1, 0, 1);
+                    double playerRot = Math.toRadians(player.rotationYaw + 90);
+                    if(look.x == 0 && look.z == 0)
+                        look = new Vector3(Math.cos(playerRot), 0, Math.sin(playerRot));
+                    look = look.normalize().multiply(-2);
+                    Vector3 pl = look.add(Vector3.fromEntityCenter(player)).add(0, -0.4,  0);
+                    Vector3 end = pl;
+                    EntityPhasePortal portal = new EntityPhasePortal(world);
+                    portal.setRotation(MathHelper.wrapDegrees(-player.rotationYaw + 180));
+                    portal.setPosition(end.x, end.y, end.z);
+                    portal.setMaster(player);
+                    world.spawnEntity(portal);
+                    //====================================
                     setPortalState(item,false);
                     setChargeValue(item,0);
                     setHyperValue(item,0.1f);
-                    return new ActionResult<>(EnumActionResult.FAIL, item);
+                    return new ActionResult<>(EnumActionResult.SUCCESS, item);
                 }
             }
 
