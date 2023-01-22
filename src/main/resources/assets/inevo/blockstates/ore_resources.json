@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "variant=copper": { "model": "inevo:ore_copper" },
+    "variant=tin": { "model": "inevo:ore_tin" }
+  }
+}

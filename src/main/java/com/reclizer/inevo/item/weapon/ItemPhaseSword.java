@@ -33,6 +33,8 @@ import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class ItemPhaseSword extends ItemEnergyBase {
         setFull3D();
     }
 
-
+    @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag flag) {
         super.addInformation(stack, player, list, flag);

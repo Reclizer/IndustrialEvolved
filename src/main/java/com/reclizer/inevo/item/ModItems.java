@@ -35,9 +35,9 @@ public class ModItems {
 
 
 
-    public static final Item ANTIGRAVITY =new ItemAntigravityEquipment(12000,"antigravity_equipment");
-    public static final Item HYPER_ENGINE =new ItemHyperEngine("hyper_engine");
-    //public static final Item NEW_ARMOR =new ItemArmorBase("new_armor",);
+    //public static final Item ANTIGRAVITY =new ItemAntigravityEquipment(12000,"antigravity_equipment");
+     public static final Item HYPER_ENGINE =new ItemHyperEngine("hyper_engine");
+
 
     public static final ItemArmor.ArmorMaterial moroonArmorMaterial = EnumHelper.addArmorMaterial(
             "gene",

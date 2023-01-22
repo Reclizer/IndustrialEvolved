@@ -1,7 +1,6 @@
 package com.reclizer.inevo.item.armor;
 
 import com.reclizer.inevo.tools.IEnergizedItem;
-import com.reclizer.inevo.item.ItemArmorBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 

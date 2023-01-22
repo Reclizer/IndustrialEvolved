@@ -13,6 +13,10 @@ item.adaptable_armor_head.name=AdaptArmor Head
 item.hyper_engine.name=Hyper Engine
 #Tiles
 tile.compressed_dirt.name=Compressed Dirt
+tile.ore_resources0.name=Copper Ore
+tile.ore_resources1.name=Tin Ore
+tile.ore_block0.name=Copper Block
+tile.ore_block1.name=Tin Block
 
 
 #Effect

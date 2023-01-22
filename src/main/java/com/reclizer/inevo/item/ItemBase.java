@@ -2,21 +2,12 @@ package com.reclizer.inevo.item;
 
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.init.ModCreativeTab;
-import com.reclizer.inevo.util.CommonFunctions;
+import com.reclizer.inevo.tools.IGuaEnhance;
 import com.reclizer.inevo.util.IHasModel;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import java.util.UUID;
 
 public class ItemBase extends Item implements IHasModel {

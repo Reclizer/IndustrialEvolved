@@ -2,6 +2,7 @@ package com.reclizer.inevo.item;
 
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.init.ModCreativeTab;
+import com.reclizer.inevo.tools.IGuaEnhance;
 import com.reclizer.inevo.util.CommonFunctions;
 import com.reclizer.inevo.util.IHasModel;
 import com.reclizer.inevo.util.NBTStrDef.IENBTDef;

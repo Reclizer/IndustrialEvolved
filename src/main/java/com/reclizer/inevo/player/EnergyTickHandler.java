@@ -1,5 +1,6 @@
 package com.reclizer.inevo.player;
 
+import com.reclizer.inevo.world.WorldEnergy;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;

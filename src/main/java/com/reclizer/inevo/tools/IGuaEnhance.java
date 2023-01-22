@@ -1,4 +1,4 @@
-package com.reclizer.inevo.item;
+package com.reclizer.inevo.tools;
 
 public interface IGuaEnhance {
     //Some item accepts not every gua

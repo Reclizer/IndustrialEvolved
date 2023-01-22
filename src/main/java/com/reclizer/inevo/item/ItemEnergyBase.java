@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
+
 import javax.annotation.Nonnull;
 import java.util.List;
 
@@ -100,7 +101,25 @@ public class ItemEnergyBase extends ItemBase implements IEnergizedItem{
         return getEnergy(itemStack) > 0;
     }
 
-
-
-
+//=================================RED FLUX===============================================
+//    @Override
+//    public int receiveEnergy(ItemStack itemStack, int i, boolean b) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int extractEnergy(ItemStack itemStack, int i, boolean b) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int getEnergyStored(ItemStack itemStack) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int getMaxEnergyStored(ItemStack itemStack) {
+//        return 0;
+//    }
+    //===============================================================================
 }

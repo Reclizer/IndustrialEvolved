@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.client.model.armor.ModelArmorAdapt;
-import com.reclizer.inevo.item.ItemArmorBase;
+import com.reclizer.inevo.item.armor.ItemArmorBase;
 import com.reclizer.inevo.item.ModItems;
 import com.reclizer.inevo.item.armor.ArmorUtils;
 import com.reclizer.inevo.util.Reference;

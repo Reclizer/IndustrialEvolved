@@ -73,7 +73,7 @@ public class BlockFastFurnace extends BlockBase{
         }
         return true;
     }
-     //www以下为方块实体绑定
+     //www`以下为方块实体绑定
     @Override
     public TileEntity createNewTileEntity(World world, int meta){
         return new TileEntityFastFurnace();

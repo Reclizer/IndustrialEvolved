@@ -14,6 +14,11 @@ item.hyper_engine.name=超空间网络
 
 #Tiles
 tile.compressed_dirt.name=压缩泥土
+tile.ore_resources0.name=铜矿石
+tile.ore_resources1.name=锡矿石
+tile.ore_block0.name=铜块
+tile.ore_block1.name=锡块
+
 
 #Effect
 effect.inevo.phaseSpace=相位空间

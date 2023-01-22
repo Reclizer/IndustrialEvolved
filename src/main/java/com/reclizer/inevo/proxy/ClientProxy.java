@@ -10,6 +10,7 @@ import com.reclizer.inevo.input.KeyInputHandler;
 import com.reclizer.inevo.potion.RenderBlinkEffect;
 import com.reclizer.inevo.util.ParticleBuilder;
 import com.reclizer.inevo.util.ParticleBuilder.Type;
+import com.reclizer.inevo.util.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
@@ -94,6 +95,12 @@ public class ClientProxy extends CommonProxy {
     public void playBlinkEffect(EntityPlayer player){
         if(Minecraft.getMinecraft().player == player) RenderBlinkEffect.playBlinkEffect();
     }
+
+//================================================================================================================
+    //·½¿émeta
+
+
+
 
 //===============================================================================================================
     @Override

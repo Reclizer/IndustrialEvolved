@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
 
+
         //implementation fg.deobf("curse.maven:baubles-227083:2518667")
     }
 }
@@ -18,16 +19,54 @@ repositories {
 //        url = "https://modmaven.k-4u.nl"
 //    }
     maven {
+        name = 'ic2'
+        url = 'https://maven.ic2.player.to'
+    }
+    maven {
         name = "azanor"
         url = "http://maven.thiakil.com"
     }
-}
-
-//repositories {
 //    maven {
-//        url = "https://www.cursemaven.com"
+//        name = "buildcraft"
+//        url = "https://mod-buildcraft.com/maven"
 //    }
-//}
+//    maven {
+//        url "https://maven.cleanroommc.com"
+//    }
+//    maven {
+//        name = "blamejared"
+//        url = "https://maven.blamejared.com"
+//    }
+//    maven {
+//        name = "CoFH Maven"
+//        url = "https://maven.covers1624.net"
+//    }
+//    maven {
+//        name = "Progwml6 maven"
+//        url = "https://dvs1.progwml6.com/files/maven/"
+//    }
+//    maven { url "https://maven.hellfiredev.net" }
+//    maven {
+//        name = "ModMaven"
+//        url = "https://modmaven.k-4u.nl"
+//    }
+//    maven {
+//        name = "ChickenBones Maven"
+//        url = "http://chickenbones.net/maven/"
+//    }
+//    maven {
+//        name 'DVS1 Maven FS'
+//        url 'http://dvs1.progwml6.com/files/maven'
+//    }
+//    maven { url = "http://maven.cil.li/" }
+//    maven { url = "https://maven.ellpeck.de/" }
+//    maven { url ="https://www.cursemaven.com"}
+//    maven {
+//        name = 'GitHub Maven'
+//        url = "https://jitpack.io"
+//    }
+
+}
 
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -85,7 +124,14 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2859'
     //deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
+    //implementation fg.deobf ("curse.maven:redstoneflux-270789:2920436")
     implementation fg.deobf("com.azanor.baubles:Baubles:1.12-1.5.2")
+    //implementation fg.deobf ("mezz.jei:jei_1.12.2:4.${jei_version}")
+
+    compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+
+
+    //compile 'net.industrial-craft:industrialcraft-2:2.2.650-experimental:api'
     //deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
     //compile files ("libs/Baubles-1.12-1.5.2.jar")
 

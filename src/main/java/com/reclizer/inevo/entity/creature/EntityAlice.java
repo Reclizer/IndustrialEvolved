@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+
 public class EntityAlice extends EntityCreature implements IAnimals,IRangedAttackMob {
 
 

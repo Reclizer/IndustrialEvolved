@@ -2,6 +2,8 @@ package com.reclizer.inevo.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +29,24 @@ public class ModBlocks {
     public static final Block ELECTRIC_FURNACE = new BlockElectricFurnace("electric_furnace",Material.IRON).setHardness(1f);
     public static final Block FAST_FURNACE = new BlockFastFurnace("fast_furnace",Material.IRON).setHardness(1f);
 
+    public static final Block ORE = new BlockOres("ore_resources");
+    public static final Block ORE_BLOCK = new BlockOres("ore_block");
+
+//    public static final Block ORE_COPPER = new BlockOres("ore_copper", Material.IRON,2);;
+//    public static final Block COPPER = new BlockOres("block_copper", Material.IRON,2);
+
+
+
     //public static final Block GRID_BLOCK_1 = new BlockBase("test", Material.CLAY).setCreativeTab(ModCreativeTab.FML_MISC).setHardness(15f);
+
+
+
+    public static void registerOres(){
+        OreDictionary.registerOre("oreCopper",  new ItemStack(ORE, 1, 0));
+        OreDictionary.registerOre("oreTin",  new ItemStack(ORE, 1, 1));
+        //Block.getStateId(ModBlocks.ORE.getDefaultState().withProperty(InevoStateProps.ORE_VARIANT, OreVariant.COPPER))
+
+    }
+
+
 }

@@ -1,9 +1,10 @@
-package com.reclizer.inevo.item;
+package com.reclizer.inevo.item.armor;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.reclizer.inevo.IndustrialEvolved;
 import com.reclizer.inevo.init.ModCreativeTab;
+import com.reclizer.inevo.item.ModItems;
 import com.reclizer.inevo.util.CommonFunctions;
 import com.reclizer.inevo.util.IHasModel;
 import com.reclizer.inevo.util.NBTStrDef.IENBTDef;

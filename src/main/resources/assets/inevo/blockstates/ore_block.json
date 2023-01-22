@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "variant=copper": { "model": "inevo:block_copper" },
+    "variant=tin": { "model": "inevo:block_tin" }
+  }
+}

@@ -1,7 +1,9 @@
-package com.reclizer.inevo.player;
+package com.reclizer.inevo.world;
 
 import com.reclizer.inevo.network.Messages;
 import com.reclizer.inevo.network.PacketSendSummoned;
+import com.reclizer.inevo.player.PlayerEnergy;
+import com.reclizer.inevo.player.PlayerProperties;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
